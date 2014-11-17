@@ -5,7 +5,7 @@ HTML or String Template Engine with JavaScript
 
 ##	Characteristic
 
-zollty-tmpl.js is fast, small and has no dependencies.
+0.  fast, small and has no dependencies.
 1.  support include inner template.
 2.  support json, array and any js object as render data.
 3.  concise syntax, easy to use.
@@ -40,7 +40,9 @@ or just write the template content in a file:
 	</ul>
 	
 ### Render template
-	
+
+use zollty.render('test', data) to render template:  
+
 	var data = {
 		title: 'This is title',
 		list: ['aaa', 'bbb', 'ccc', 'ddd', 'eee', 'fff', 'ggg']
@@ -49,7 +51,7 @@ or just write the template content in a file:
 	document.getElementById('content').innerHTML = html;
 
 
-[Examples](http://github.com/zollty-org/zollty-tmpl/examples/basic-usage.html)
+[Examples](https://github.com/zollty-org/zollty-tmpl/tree/master/examples/basic-usage.html)
 
 
 ##	Download
