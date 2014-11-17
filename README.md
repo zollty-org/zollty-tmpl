@@ -51,7 +51,7 @@ use zollty.render('test', data) to render template:
 	document.getElementById('content').innerHTML = html;
 
 
-[Examples](https://github.com/zollty-org/zollty-tmpl/tree/master/examples/basic-usage.html)
+[See Examples](https://github.com/zollty-org/zollty-tmpl/tree/master/examples/basic-usage.html)
 
 
 ##	Download
@@ -79,7 +79,7 @@ use zollty.render('test', data) to render template:
 ## Licenses
 
 Released under the MIT, BSD, and GPL Licenses
-© zollty.com
+zollty.com
 ============
 
-[引擎原理](See: http://krasimirtsonev.com/blog/article/Javascript-template-engine-in-just-20-line)
+See: [引擎原理](http://krasimirtsonev.com/blog/article/Javascript-template-engine-in-just-20-line)
