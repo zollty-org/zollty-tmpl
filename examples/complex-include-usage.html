@@ -1,0 +1,36 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>complex-include-usage</title>
+<script src="../dist/1.0.0/zollty-tmpl.js"></script>
+</head>
+
+<body>
+<div id="content"></div>
+
+<script id="test" type="text/html">
+<h1>{{title}}</h1>
+
+{{each list as value}}
+	<p><select name="level">
+	{{include 'optionsTpl' value}}
+	</select></p>
+{{/each}}
+</script>
+<script id="optionsTpl" type="text/html">
+<option value="MY" {{if item=='民谣' }} selected {{/if}} >民谣</option>
+<option value="WY" {{if item=='文艺' }} selected {{/if}} >文艺</option>
+<option value="SY" {{if item=='摄影' }} selected {{/if}} >摄影</option>
+</script>
+
+<script>
+var data = {
+	title: '嵌入子模板',
+	list: [{"item": "文艺"}, {"item": "摄影"}, {"item": "民谣"}]
+};
+var html = zollty.render('test', data);
+document.getElementById('content').innerHTML = html;
+</script>
+</body>
+</html>

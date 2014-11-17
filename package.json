@@ -1,0 +1,27 @@
+{
+  "name": "zollty-tmpl",
+  "description": "HTML or String Template Engine with JavaScript",
+  "homepage": "https://github.com/zollty-org/zollty-tmpl/",
+  "keywords": [
+    "html-helper",
+    "replace-util",
+    "js-template"
+  ],
+  "author": "Zollty Tsou <zolltytsou@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/zollty-org/zollty-tmpl.git"
+  },
+  "main": "./src/zollty-tmpl.js",
+  "version": "1.0.0",
+  "devDependencies": {
+	"mocha": "1.5.0"
+  },
+  "volo": {
+    "url": "https://raw.github.com/zollty-org/zollty-tmpl/{version}/zollty-tmpl.js"
+  },
+  "scripts": {
+    "test": "mocha test"
+  }
+  "license": "MIT"
+}

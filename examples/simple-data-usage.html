@@ -1,0 +1,26 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>simple-data-usage</title>
+<script src="../dist/1.0.0/zollty-tmpl.js"></script>
+</head>
+
+<body>
+<div id="content"></div>
+
+<script id="test" type="text/html">
+<ul>
+	{{each $data as value i}}
+		<li>索引 {{i + 1}} ：{{value}}</li>
+	{{/each}}
+</ul>
+</script>
+
+<script>
+var data = ['文艺', '博客', '摄影', '电影', '民谣', '旅行', '吉他'];
+var html = zollty.render('test', data);
+document.getElementById('content').innerHTML = html;
+</script>
+</body>
+</html>
