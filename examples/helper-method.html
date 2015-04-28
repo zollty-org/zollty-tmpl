@@ -12,13 +12,14 @@
 
 <script id="test" type="text/html">
 页面打开时间为：<br>
-{{#time | myfun:"append content"}}
-</script><!-- 冒号后面为函数的参数，可以跟多个参数 -->
+{{#time | myfun:"append content","ccc" | myfun:"append222","ddd"}}
+</script><!-- 冒号后面为函数的参数（可以跟多个参数，用逗号分隔），支持多层过滤器，最终形成的函数类似于：
+$string($helpers.myfun(time,"append content","ccc")) -->
 
 <script>
 // 给模板引擎添加外部helper方法
-zollty.addHelper('myfun', function (str, appendStr) {
-    return str+"<br>"+appendStr;
+zollty.addHelper('myfun', function (str, appendStr, arg2) {
+    return str+"<br>"+appendStr+arg2;
 });
 
 var data = {
