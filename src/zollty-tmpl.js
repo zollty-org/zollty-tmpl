@@ -2,7 +2,7 @@
  * ZolltyTmpl.js 
  * HTML or String Template Engine with JavaScript
  * https://github.com/zollty-org/zollty-tmpl
- * Version 1.0.0 (Released on 2014-11-06)
+ * Version 1.2.0 (Released on 2015-04-28)
  * Licensed under the MIT, BSD, and GPL Licenses.
  */
  
@@ -31,7 +31,7 @@ zollty.render = function (filename, content) {
 };
 
 
-zollty.version = '1.0.0';
+zollty.version = '1.2.0';
 
 
 /**
@@ -44,20 +44,16 @@ zollty.config = function (name, value) {
     defaults[name] = value;
 };
 
-
-
 var defaults = zollty.defaults = {
     openTag: '<%',    // 逻辑语法开始标签
     closeTag: '%>',   // 逻辑语法结束标签
     escape: true,     // 是否编码输出变量的 HTML 字符
     cache: true,      // 是否开启缓存（依赖 options 的 filename 字段）
     compress: false,  // 是否压缩输出
-    parser: null      // 自定义语法格式器 @see: zollty-syntax.js
+    parser: null      // 自定义语法格式器 @see: defaults.parser
 };
 
-
 var cacheStore = zollty.cache = {};
-
 
 /**
  * 渲染模板(根据模板名)
@@ -206,20 +202,19 @@ var utils = zollty.utils = {
 
     $each: each
     
-};/**
+};
+
+zollty.helpers = utils.$helpers;
+
+/**
  * 添加模板辅助方法
- * @name    zollty.helper
+ * @name    zollty.addHelper
  * @param   {String}    名称
  * @param   {Function}  方法
  */
-zollty.helper = function (name, helper) {
-    helpers[name] = helper;
+zollty.addHelper = function (name, helper) {
+    zollty.helpers[name] = helper;
 };
-
-var helpers = zollty.helpers = utils.$helpers;
-
-
-
 
 /**
  * 模板错误事件（可由外部重写此方法）
@@ -336,8 +331,6 @@ var compile = zollty.compile = function (source, options) {
 };
 
 
-
-
 // 数组迭代
 var forEach = utils.$each;
 
@@ -400,12 +393,8 @@ function compiler (source, options) {
     var compress = options.compress;
     var escape = options.escape;
     
-
-    
     var line = 1;
     var uniq = {$data:1,$filename:1,$utils:1,$helpers:1,$out:1,$line:1};
-    
-
 
     var isNewEngine = ''.trim;// '__proto__' in {}
     var replaces = isNewEngine
@@ -476,11 +465,7 @@ function compiler (source, options) {
         + "}";
     }
     
-    
-    
     try {
-        
-        
         var Render = new Function("$data", "$filename", code);
         Render.prototype = utils;
 
@@ -491,9 +476,6 @@ function compiler (source, options) {
         throw e;
     }
 
-
-
-    
     // 处理 HTML 语句
     function html (code) {
         
@@ -537,7 +519,6 @@ function compiler (source, options) {
         
         
         // 输出语句. 编码: <%=value%> 不编码:<%=#value%>
-        // <%=#value%> 等同 v2.0.3 之前的 <%==value%>
         if (code.indexOf('=') === 0) {
 
             var escapeSyntax = escape && !/^=[=#]/.test(code);
@@ -594,7 +575,7 @@ function compiler (source, options) {
 
                 value = "$utils." + name;
 
-            } else if (helpers[name]) {
+            } else if (zollty.helpers[name]) {
 
                 value = "$helpers." + name;
 
@@ -627,6 +608,7 @@ defaults.closeTag = '}}';
 var filtered = function (js, filter) {
     var parts = filter.split(':');
     var name = parts.shift();
+	name = name.replace(/^\s/, '');
     var args = parts.join(':') || '';
 
     if (args) {
@@ -645,13 +627,12 @@ defaults.parser = function (code, options) {
     // var split = args.split(' ');
     // split.shift();
 
+	// remove the first one whitespace charactor
     code = code.replace(/^\s/, '');
 
     var split = code.split(' ');
     var key = split.shift();
     var args = split.join(' ');
-
-    
 
     switch (key) {
 
@@ -718,8 +699,9 @@ defaults.parser = function (code, options) {
 
                 var escape = true;
 
-                // {{#value | link}}
-                if (code.indexOf('#') === 0) {
+                // like {{#value | link}}
+				if (code.charAt(0) === '#') {
+                //if (code.indexOf('#') === 0) {
                     code = code.substr(1);
                     escape = false;
                 }

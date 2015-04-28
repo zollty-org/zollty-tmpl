@@ -1,0 +1,35 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>helper-demo</title>
+<script src="../dist/latest/zollty-tmpl.js"></script>
+</head>
+
+<body>
+<h1>添加外部Helper方法</h1>
+<div id="content"></div>
+
+<script id="test" type="text/html">
+页面打开时间为：<br>
+{{#time | myfun:"append content"}}
+</script><!-- 冒号后面为函数的参数，可以跟多个参数 -->
+
+<script>
+// 给模板引擎添加外部helper方法
+zollty.addHelper('myfun', function (str, appendStr) {
+    return str+"<br>"+appendStr;
+});
+
+var data = {
+	time: new Date().getTime()
+};
+var html = zollty.render('test', data);
+
+document.getElementById('content').innerHTML = html;
+</script>
+</body>
+</html>
+
+
+
