@@ -56,7 +56,7 @@ use zollty.render('test', data) to render template:
 
 ##	Download
 
-* [zollty-tmpl.js](https://raw.github.com/zollty-org/zollty-tmpl/master/dist/1.0.0/zollty-tmpl.js) 
+* [zollty-tmpl.js](https://raw.github.com/zollty-org/zollty-tmpl/master/dist/latest/zollty-tmpl.js) 
 
 
 ##	NodeJS
