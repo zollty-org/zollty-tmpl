@@ -1,4 +1,4 @@
-# ZolltyTmpl.js
+# zollty-tmpl.js
 
 HTML or String Template Engine with JavaScript
 
