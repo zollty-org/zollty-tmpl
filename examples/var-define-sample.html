@@ -1,0 +1,38 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>simple-data-usage</title>
+<script src="../dist/latest/zollty-tmpl.js"></script>
+</head>
+
+<body>
+<div id="content"></div>
+
+<script id="test" type="text/html">
+<ul>
+	{{each $data as value i}}
+
+        {{if value==skipKey4test }}
+          <li style="color:red">索引 {{i + 1}} ：skipKey444444Test </li>
+        {{else}}
+          <li>索引 {{i + 1}} ：{{value}}</li>
+        {{/if}}
+
+	{{/each}}
+</ul>
+</script>
+
+<script>
+var skipKey4test = "45";
+
+var data = ['234', 'red', 'fd', '789', '45', 'jds', '54'];
+
+// 把要用的变量绑定到data上面，这样在模板中就可以直接使用了
+data.skipKey4test = skipKey4test;
+
+var html = zollty.render('test', data);
+document.getElementById('content').innerHTML = html;
+</script>
+</body>
+</html>
