@@ -1,0 +1,42 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>render-runtime-error</title>
+  <script src="../dist/latest/zollty-tmpl.js"></script>
+</head>
+
+<body>
+
+<h1>添加外部extend函数</h1>
+<div id="content"></div>
+
+<!-- 冒号后面为函数的参数（可以跟多个参数，用逗号分隔），支持多层过滤器，最终形成的函数类似于：
+    $extFns.myfun(time,"append content","ccc") -->
+    <script id="test" type="text/html">
+    页面打开时间为：
+    <br> {{#time | myfun:"append content","ccc" | myfun:"append222","ddd"}}
+    </script>
+
+
+<script>
+
+// 给模板引擎添加全局extend扩展方法
+zollty.extend({
+    myfun: function (str, appendStr, arg2) {
+        // str00000 is undefined !!!
+        return str00000 + "<br>" + appendStr + arg2;
+    }
+});
+
+var data = {
+  time: new Date().getTime()
+};
+var html = zollty.render('test', data);
+
+document.getElementById('content').innerHTML = html;
+</script>
+
+</body>
+</html>

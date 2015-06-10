@@ -1,0 +1,48 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>advance-include-demo</title>
+<script src="../../dist/latest/zollty-tmpl.js"></script>
+</head>
+
+<body>
+<div id="content"></div>
+
+<script id="test" type="text/html">
+<h1>{{title}}</h1>
+<h1>{{$data.title}}</h1>
+
+<ul>
+    {{each list as myValue i}}
+        {{include 'list-li' (myValue, i, title)}}
+        {{include 'list-li-2' myValue}}
+    {{/each}}
+</ul>
+
+</script>
+
+<!-- 该include的示例，解决了如下问题：
+如何在一个include 模板中，使用上级的多个变量，比如 title i value?
+解决方案：把title i value放到一个变量，转换成类似于 {"title":title,"i":i,"value":value} 形式
+ -->
+<script id="list-li" type="text/html">
+     <li>{{title}} {{i + 1}} ：{{myValue}}</li>
+</script>
+<script id="list-li-2" type="text/html">
+     <li>索引 {{i + 1}} ：{{$data}}</li>
+</script>
+
+<script>
+var myTitle222 = 'myTitle222222';
+var myTitle = '嵌入子模板';
+var data = {
+	title: myTitle,
+	list: ['文艺', '博客', '摄影', '电影', '民谣', '旅行', '吉他']
+};
+
+var html = zollty.render('test', data);
+document.getElementById('content').innerHTML = html;
+</script>
+</body>
+</html>
