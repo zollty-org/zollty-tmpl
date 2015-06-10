@@ -18,16 +18,17 @@
 	</select></p>
 {{/each}}
 </script>
+
 <script id="optionsTpl" type="text/html">
-<option value="MY" {{if item=='民谣' }} selected {{/if}} >民谣</option>
-<option value="WY" {{if item=='文艺' }} selected {{/if}} >文艺</option>
-<option value="SY" {{if item=='摄影' }} selected {{/if}} >摄影</option>
+<option value="MY" {{if item=='sks' }} selected {{/if}} >sks</option>
+<option value="WY" {{if item=='wws' }} selected {{/if}} >wws</option>
+<option value="SY" {{if item=='bgbg' }} selected {{/if}} >bgbg</option>
 </script>
 
 <script>
 var data = {
 	title: '嵌入子模板',
-	list: [{"item": "文艺"}, {"item": "摄影"}, {"item": "民谣"}]
+	list: [{"item": "sks"}, {"item": "bgbg"}, {"item": "wws"}]
 };
 var html = zollty.render('test', data);
 document.getElementById('content').innerHTML = html;

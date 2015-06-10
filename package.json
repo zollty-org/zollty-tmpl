@@ -7,18 +7,18 @@
     "replace-util",
     "js-template"
   ],
-  "author": "Zollty Tsou <zolltytsou@gmail.com>",
+  "author": "Zollty Tsou <zollty@163.com>",
   "repository": {
     "type": "git",
     "url": "https://github.com/zollty-org/zollty-tmpl.git"
   },
   "main": "./src/zollty-tmpl.js",
-  "version": "1.2.0",
+  "version": "1.3.1",
   "devDependencies": {
 	"mocha": "1.5.0"
   },
   "volo": {
-    "url": "https://raw.github.com/zollty-org/zollty-tmpl/{version}/zollty-tmpl.js"
+    "url": "https://raw.github.com/zollty-org/zollty-tmpl/dist/{version}/zollty-tmpl-{version}.min.js"
   },
   "scripts": {
     "test": "mocha test"
