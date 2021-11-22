@@ -1,7 +1,12 @@
 # zollty-tmpl.js
+[![npm](https://img.shields.io/npm/dt/@zollty/zollty-tmpl.svg)](github-https://www.npmjs.com/package/@zollty/zollty-tmpl)
+[![npm](https://img.shields.io/npm/v/@zollty/zollty-tmpl.svg)](https://www.npmjs.com/package/@zollty/zollty-tmpl)
 
-HTML or String Template Engine with JavaScript
+HTML Template Engine with JavaScript. (JS-Template)  
 
+Support most modern browsers, and NodeJS.  
+
+Latest stable version：v1.3.2
 
 ##	Characteristic
 
@@ -79,7 +84,6 @@ use zollty.render('test', data) to render template:
 ## Licenses
 
 Released under the MIT, BSD, and GPL Licenses
-zollty.com
-============
+zollty.com   
 
-See: [引擎原理](http://krasimirtsonev.com/blog/article/Javascript-template-engine-in-just-20-line)
+See: [JS模板引擎原理](http://krasimirtsonev.com/blog/article/Javascript-template-engine-in-just-20-line)
